@@ -4,6 +4,24 @@ SPA que consome a API da Carteira Digital (Laravel). Autenticação por token (B
 dashboard com saldo e resumo do mês, depósito, saque com validação de saldo no frontend,
 e histórico com filtros e paginação.
 
+## Links
+
+| Recurso | URL |
+|---|---|
+| **Deploy (Aplicação)** | https://teck-solucoes-frontend.vercel.app/ |
+| **API (Backend)** | https://tecksolucoesbackend-production.up.railway.app/api/ |
+| **Repositório (Frontend)** | https://github.com/Andraad3/teck_solucoes_frontend |
+| **Repositório (Backend)** | https://github.com/Andraad3/teck_solucoes_backend |
+
+### Credenciais de teste (usuário seed)
+
+```
+E-mail: demo@example.com
+Senha:  password
+```
+
+Também é possível criar uma conta nova pela tela de cadastro.
+
 ## Stack
 
 - **Vue 3** (Composition API, `<script setup lang="ts">`)
@@ -14,7 +32,9 @@ e histórico com filtros e paginação.
 
 ## Pré-requisitos
 
-A API precisa estar rodando em `http://localhost:8000`:
+- **Node.js** >= 20 (desenvolvido em 22) · **npm** >= 10
+- A **API (backend)** rodando — em produção já aponta para o deploy; para uso local,
+  suba o backend em `http://localhost:8000`:
 
 ```bash
 # na raiz do projeto (backend)
@@ -23,16 +43,31 @@ php artisan migrate --seed   # cria o usuário demo
 php artisan serve            # http://localhost:8000
 ```
 
-Usuário de demonstração: **demo@example.com** / senha `password`.
-
 ## Setup
 
 ```bash
-cd frontend
-cp .env.example .env          # VITE_API_BASE_URL=http://localhost:8000/api
+# 1. Clonar e instalar dependências
+git clone https://github.com/Andraad3/teck_solucoes_frontend.git
+cd teck_solucoes_frontend
 npm install
+
+# 2. Ambiente (.env) — define a URL da API consumida
+cp .env.example .env          # VITE_API_BASE_URL=http://localhost:8000/api
+
+# 3. Servir (modo desenvolvimento)
 npm run dev                   # http://localhost:5173
 ```
+
+### Configuração do `.env`
+
+Uma única variável controla qual API o frontend consome:
+
+```dotenv
+VITE_API_BASE_URL=http://localhost:8000/api
+```
+
+Para apontar ao backend em produção, use
+`https://tecksolucoesbackend-production.up.railway.app/api`.
 
 Outros scripts:
 
